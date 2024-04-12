@@ -1,0 +1,202 @@
+
+#I need to avoid mapping but bring the created fields downdrop, it is displayed normally, help with this code
+
+
+add_filter('woe_get_order_value_director-vp', function ($value, $order, $fieldname) {
+    // Array asociativo para mapear valores
+    $value_mappings = array(
+        'alboresmartin' => 'Albores, Martin',
+        'amedeecindy' => 'Amedee, Cindy',
+        'augustineglenn' => 'Augustine, Glenn',
+        'aycocktad' => 'Aycock, Tad',
+        'bakerkatie' => 'Baker, Katie',
+        'baucombryan' => 'Baucom, Bryan',
+        'bergeronmeridith' => 'Bergeron, Meridith',
+        'buchananeboni' => 'Buchanan, Eboni',
+        'burgoslaurel' => 'Burgos, Laurel',
+        'chaissonapril' => 'Chaisson, April',
+        'cooganbrooke' => 'Coogan, Brooke',
+        'deanpeggy' => 'Dean, Peggy',
+        'deschamprenada' => 'Deschamp, Renada',
+        'dunnmaegan' => 'Dunn, Maegan',
+        'dusangnina' => 'Dusang, Nina',
+        'engladetina' => 'Englade, Tina',
+        'garlandlisa' => 'Garland, Lisa',
+        'gaspardallyson' => 'Gaspard, Allyson',
+        'glueckbianca' => 'Glueck, Bianca',
+        'griffithscathy' => 'Griffiths, Cathy',
+        'guidrykevin' => 'Guidry, Kevin',
+        'halphened' => 'Halphen, Ed',
+        'icenoglebill' => 'Icenogle, Bill',
+        'jacksonbrad' => 'Jackson, Brad',
+        'johnsoncheri' => 'Johnson, Cheri',
+        'kirkpaul' => 'Kirk, Paul',
+        'lafleurjoy' => 'LaFleur, Joy',
+        'latourjay' => 'LaTour, Jay',
+        'legendredanette' => 'Legendre, Danette',
+        'levyjennifer' => 'Levy, Jennifer',
+        'mageemarybeth' => 'Magee, Mary Beth',
+        'parkerpam' => 'Parker, Pam',
+        'plumeralicia' => 'Plumer, Alicia',
+        'poretcorey' => 'Poret, Corey',
+        'ragasrene' => 'Ragas, Rene',
+        'reevesamye' => 'Reeves, Amye',
+        'royrhett' => 'Roy, Rhett',
+        'sanfordshauna' => 'Sanford, Shauna',
+        'scottkurt' => 'Scott, Kurt',
+        'singletonwendy' => 'Singleton, Wendy',
+        'songytonya' => 'Songy, Tonya',
+        'stovallkeila' => 'Stovall, Keila',
+        'tamplainkayla' => 'Tamplain, Kayla',
+        'thibodeauxshannon' => 'Thibodeaux, Shannon',
+        'whaleymartinallyn' => 'Whaley-Martin, Allyn',
+        'wigglesworthkimberly' => 'Wigglesworth, Kimberly',
+        'other-fill-in' => 'OTHER: (FILL IN)'
+        // Agrega más mapeos según sea necesario
+    );
+    
+    // Obtener el valor del campo personalizado "director-vp" del pedido
+    $director_vp = $order->get_meta('director-vp', true);
+    
+    // Verificar si el valor existe en el mapeo
+    if (array_key_exists($director_vp, $value_mappings)) {
+        // Si existe, utilizar el valor mapeado
+        $value = $value_mappings[$director_vp];
+    }
+    
+    // Devolver el valor
+    return $value;
+}, 10, 3);
+
+
+add_filter('woe_get_order_value_department_name_wh', function ($value, $order, $fieldname) {
+    // Array asociativo para mapear valores
+    $department_mappings = array(
+        'accounting' => 'Accounting',
+    'aicu' => 'AICU',
+    'assessment-center' => 'Assessment Center',
+    'assessment-center-physician' => 'Assessment Center Physician',
+    'bariatric-surgery' => 'Bariatric Surgery',
+    'breast-specialist' => 'Breast Specialist',
+    'building-operations' => 'Building Operations',
+    'call-center' => 'Call Center',
+    'cancer-genetics-clinic' => 'Cancer Genetics Clinic',
+    'cancer-pavilion' => 'Cancer Pavilion',
+    'cancer-pavillion-mbp' => 'Cancer Pavillion MBP',
+    'cancer-pavillion-olol' => 'Cancer Pavillion OLOL',
+    'cancer-registry' => 'Cancer Registry',
+    'case-management' => 'Case Management',
+    'clinical-documentation-improvement' => 'Clinical Documentation Improvement',
+    'community-education' => 'Community Education',
+    'cura' => 'Cura',
+    'diabetic-clinic' => 'Diabetic Clinic',
+    'diversity-equity-inclusion' => 'Diversity Equity & Inclusion',
+    'educational-services' => 'Educational Services',
+    'employee-health' => 'Employee Health',
+    'environmental-services' => 'Environmental Services',
+    'fitness-center' => 'Fitness Center',
+    'health-center-for-ob-gyn' => 'Health Center for OB/GYN',
+    'health-information-mgmt' => 'Health Information Mgmt',
+    'high-risk-unit' => 'High Risk Unit',
+    'hospital-administration' => 'Hospital Administration',
+    'human-resources' => 'Human Resources',
+    'imaging-services' => 'Imaging Services',
+    'infection-prevention' => 'Infection Prevention',
+    'information-systems' => 'Information Systems',
+    'infusion-center' => 'Infusion Center',
+    'labor-delivery' => 'Labor & Delivery',
+    'laboratory' => 'Laboratory',
+    'legal-services' => 'Legal Services',
+    'managed-care' => 'Managed Care',
+    'marketing-communication' => 'Marketing & Communication',
+    'materials-management' => 'Materials Management',
+    'maternal-fetal-med-physician' => 'Maternal Fetal Med-Physician',
+    'maternal-fetal-medicine' => 'Maternal Fetal Medicine',
+    'med-surg-oncology' => 'Med Surg/Oncology',
+    'medical-library' => 'Medical Library',
+    'medical-staff-services' => 'Medical Staff Services',
+    'mother-baby' => 'Mother/Baby',
+    'nicu' => 'NICU',
+    'nursing-administration' => 'Nursing Administration',
+    'nutritional-services' => 'Nutritional Services',
+    'operating-room' => 'Operating Room',
+    'or-sdsc' => 'OR - SDSC',
+    'outpatient-clinics' => 'Outpatient Clinics',
+    'pacu' => 'PACU',
+    'patient-access' => 'Patient Access',
+    'patient-accounting' => 'Patient Accounting',
+    'patient-relations' => 'Patient Relations',
+    'perinatal-mental-health-unit' => 'Perinatal Mental Health Unit',
+    'perioperative-services' => 'Perioperative Services',
+    'pharmacy' => 'Pharmacy',
+    'pharmacy-residency' => 'Pharmacy Residency',
+    'philanthropy' => 'Philanthropy',
+    'physician-relations' => 'Physician Relations',
+    'physicians-practice-management' => 'Physicians Practice Management',
+    'picu' => 'PICU',
+    'pre-surgery-center' => 'Pre-Surgery Center',
+    'printing-services' => 'Printing Services',
+    'project-managment-office' => 'Project Managment Office',
+    'quality-management' => 'Quality Management',
+    'research' => 'Research',
+    'respiratory-care-ekg' => 'Respiratory Care/EKG',
+    'retail-pharmacy' => 'Retail Pharmacy',
+    'retail-services' => 'Retail Services',
+    'revenue-integrity' => 'Revenue Integrity',
+    'risk-management' => 'Risk Management',
+    'safety-management' => 'Safety Management',
+    'security' => 'Security',
+    'spa-services' => 'Spa Services',
+    'sterile-processing' => 'Sterile Processing',
+    'surgery-care-unit' => 'Surgery Care Unit',
+    'therapy-center' => 'Therapy Center',
+    'uro-gyn' => 'Uro/Gyn',
+    'volunteer-services' => 'Volunteer Services',
+    'womans-behavioral-health' => 'Womans Behavioral Health',
+    'womans-gynecologic-oncology' => 'Womans Gynecologic Oncology',
+    'womans-metabolic-center' => 'Womans Metabolic Center',
+    'womans-general-surgery' => 'Womans General Surgery',
+    'other-fill-in' => 'OTHER: (FILL IN)'
+    
+    );
+    
+    // Obtener el valor del campo personalizado "department_name_wh" del pedido
+    $department_name_wh = $order->get_meta('department_name_wh', true);
+    
+    // Verificar si el valor existe en el mapeo
+    if (array_key_exists($department_name_wh, $department_mappings)) {
+        // Si existe, utilizar el valor mapeado
+        $value = $department_mappings[$department_name_wh];
+    }
+    
+    // Devolver el valor
+    return $value;
+}, 10, 3);
+
+
+
+
+
+add_filter('woe_get_order_value_building_location_wh', function ($value, $order, $fieldname) {
+    // Array asociativo para mapear valores
+    $building_mappings = array(
+    'bat-center' => 'BAT Center',
+    'behavioral-health' => 'Behavioral Health',
+    'cancer-pavilion' => 'Cancer Pavilion',
+    'main-hospital' => 'Main Hospital',
+    'wellness-center' => 'Wellness Center',
+    'physician-office-building' => 'Physician Office Building'
+    );
+    
+    // Obtener el valor del campo personalizado "building_location_wh" del pedido
+    $building_location_wh = $order->get_meta('building_location_wh', true);
+    
+    // Verificar si el valor existe en el mapeo
+    if (array_key_exists($building_location_wh, $building_mappings)) {
+        // Si existe, utilizar el valor mapeado
+        $value = $building_mappings[$building_location_wh];
+    }
+    
+    // Devolver el valor
+    return $value;
+}, 10, 3);
